@@ -37,6 +37,24 @@ function generateAll(width, height) {
 	updateCanvas()
 }
 
+function generateRandom() {
+	initSeed()
+	const multiplier = getParameter('multiplier')
+	const addition = getParameter('addition')
+	while (true) {
+		for (let i = 0; i < 1000; i++) {
+			const x = generate(multiplier, addition)
+			const y = generate(multiplier, addition)
+			const red = generate(multiplier, addition)
+			const green = generate(multiplier, addition)
+			const blue = generate(multiplier, addition)
+			//console.log(red, green, blue)
+			drawPixel(x, y, red, green, blue, 255)
+		}
+		updateCanvas()
+	}
+}
+
 function generate(multiplier, addition) {
 	const temp = state * multiplier + addition
 	state = temp % (256*256)
